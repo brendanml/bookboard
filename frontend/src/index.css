@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'); */
+
+/* @theme {
+  --font-
+} */
+
+:root {
+  body {
+    --primary-c: #731DD8;
+    --secondary-c: #48A9A6;
+  }
+} 
