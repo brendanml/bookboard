@@ -21,7 +21,7 @@ const existingUser = {
 
 test.describe("bookboard app", () => {
   test.beforeEach(async ({ page, context }) => {
-    const res = await context.request.post("/api/reset")
+    const res = await context.request.post("/api/testing/reset")
     const existingUserRes = await context.request.post("/api/user/register", {
       data: existingUser,
     })

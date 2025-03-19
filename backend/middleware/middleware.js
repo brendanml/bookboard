@@ -1,11 +1,12 @@
 const logger = require("../utils/logger")
 
 const requestLogger = (req, res, next) => {
+  logger.info("--------------------------------------")
   logger.info("Method: ", req.method)
   logger.info("Path: ", req.path)
   logger.info("Body: ", req.body)
   logger.info("Session: ", req.session)
-  logger.info("----")
+  logger.info("--------------------------------------")
   next()
 }
 
@@ -31,6 +32,7 @@ const errorHandler = (error, req, res, next) => {
   } else if (error.name === "TokenExpiredError") {
     return response.status(401).json({ error: "token expired" })
   }
+  res.status(500).json({ error: "internal server error" })
 
   next(error)
 }
