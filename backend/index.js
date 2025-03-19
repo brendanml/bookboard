@@ -9,14 +9,29 @@ const { dbconnect } = require("./dbconnect")
 const { Listing } = require("./models/Listing")
 const { Item } = require("./models/Item")
 const { User } = require("./models/User")
+const logger = require("./utils/logger")
 const axios = require("axios")
+const {
+  requestLogger,
+  unknownEndpoint,
+  errorHandler,
+} = require("./middleware/middleware")
 
 dbconnect()
 const app = express()
 
 app.use(cors())
 app.use(express.json())
-console.log(process.env.SECRET)
+app.use(requestLogger)
+if (process.env.NODE_ENV === "test") {
+  app.post("/api/reset", async (req, res) => {
+    await Listing.deleteMany({})
+    await User.deleteMany({})
+    await Item.deleteMany({})
+    console.log("Database reset")
+    res.status(200).json({ message: "Database reset" })
+  })
+}
 app.use(
   session({
     secret: process.env.SECRET || "your-secret-key",
@@ -40,19 +55,11 @@ app.use(
 const validateUser = async (req, res, next) => {
   try {
     // Check if session and user exist
-    console.log("in req session:")
-    console.log(req.session)
     if (!req.session || !req.session.user) {
       return res.status(200).json({ message: "Unauthorized: No session found" })
     }
 
-    console.log("Validating user")
-    console.log(req.session.user)
-
     const { _id, password } = req.session.user
-
-    console.log("the email is", _id)
-    console.log("the password is", password)
 
     // Find user in the database
     const findUser = await User.findById(_id)
@@ -61,15 +68,12 @@ const validateUser = async (req, res, next) => {
     }
 
     // Validate password
-    console.log("the matched user is", findUser.password)
-    console.log("the password is", password)
     if (password !== findUser.password) {
       return res
         .status(200)
         .json({ message: "Unauthorized: Invalid credentials" })
     }
 
-    // Attach the user to the request object
     req.user = findUser
     next()
   } catch (error) {
@@ -241,6 +245,9 @@ app.post("/api/user/logout", (req, res, next) => {
 //   console.log(req.sessionID)
 //   res.status(200).json({ message: "Session created" })
 // })
+
+app.use(unknownEndpoint)
+app.use(errorHandler)
 
 const PORT = 3000
 app.listen(PORT, () => {
