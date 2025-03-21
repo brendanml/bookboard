@@ -9,6 +9,7 @@ const userRouter = require("./routes/user")
 const listingRouter = require("./routes/listings")
 const adminRouter = require("./routes/admin")
 const testingRouter = require("./routes/testing")
+const booksRouter = require("./routes/books")
 const {
   requestLogger,
   unknownEndpoint,
@@ -31,6 +32,7 @@ app.use("/api/user", userRouter)
 app.use("/api/listings", listingRouter)
 
 app.use("/api/admin", adminRouter)
+app.use("/api/books", booksRouter)
 
 app.use(unknownEndpoint)
 app.use(errorHandler)

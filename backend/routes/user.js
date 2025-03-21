@@ -65,6 +65,7 @@ router.post("/register", async (req, res, next) => {
 router.get("/books", validateUser, async (req, res, next) => {
   const { _id } = req.user
   const foundBooks = await Listing.find({ owner: _id }).populate("item")
+  console.log("Found books:", foundBooks)
   res.status(200).json(foundBooks)
 })
 
@@ -85,6 +86,27 @@ router.get("/", validateUser, async (req, res, next) => {
 router.post("/logout", (req, res, next) => {
   req.session.destroy()
   res.status(200).json({ message: "User logged out" })
+})
+
+router.delete("/books/:id", validateUser, async (req, res, next) => {
+  const { id } = req.params
+  try {
+    const deletedListing = await Listing.findByIdAndDelete(id)
+
+    if (!deletedListing) {
+      return res.status(400).json({ error: "Listing not found" })
+    }
+
+    await User.findByIdAndUpdate(deletedListing.userId, {
+      $pull: { listings: id },
+    })
+    return res
+      .status(200)
+      .json({ message: "Listing deleted", listing: deletedListing })
+  } catch (error) {
+    console.error("Error deleting listing:", error)
+    return res.status(500).json({ error: "Failed to delete listing" })
+  }
 })
 
 module.exports = router

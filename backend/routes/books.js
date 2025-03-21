@@ -24,6 +24,7 @@ const parseBooks = (data) => {
 
 router.get("/google", async (req, res, next) => {
   const query = req.query.q
+  console.log("Query:", query)
   const key = process.env.GOOGLE_BOOKS_API_KEY
   const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${key}`
   try {

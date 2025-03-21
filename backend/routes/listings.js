@@ -27,6 +27,7 @@ router.post("/create", validateUser, async (req, res, next) => {
           type: type,
         })
       }
+      console.log("Item:", item)
       const newListing = await Listing.create({
         item: item._id,
         quantity: entry.quantity,
