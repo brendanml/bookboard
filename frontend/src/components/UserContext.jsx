@@ -21,10 +21,7 @@ export const UserContextProvider = (props) => {
   useEffect(() => {
     const fetchUser = async () => {
       const user = await getUser()
-      console.log("user from fetchUser", user)
       if (user.email) {
-        console.log("IN USER CONTEXT:")
-        console.log(user)
         setUser({ type: "LOGIN", payload: user })
       }
     }

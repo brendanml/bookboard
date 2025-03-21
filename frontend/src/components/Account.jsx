@@ -4,7 +4,6 @@ import { Input } from "./ui/input"
 
 const Account = () => {
   const [user, setUser] = useContext(UserContext)
-  console.log(user)
 
   const handleChange = () => {
     console.log("changing")

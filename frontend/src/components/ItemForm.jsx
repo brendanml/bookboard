@@ -5,21 +5,22 @@ import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { useNavigate } from "react-router-dom"
 import { Textarea } from "@/components/ui/textarea"
+import ItemSuggestions from "./ItemSuggestions"
 
 const Entry = ({ entry, setEntries }) => {
   const [formState, setFormState] = useState({
+    query: "",
     title: "",
     quantity: 1,
     price: 5.0, // Ensure value is a float
+    description: "",
+    image: "",
   })
+  const [suggestionsVisible, setSuggestionsVisible] = useState(false)
 
-  useEffect(() => {
-    setFormState({
-      title: entry.title || "",
-      quantity: entry.quantity || "1",
-      price: entry.price || "0",
-    })
-  }, [entry])
+  const handleTitleChange = () => {
+    console.log("Title change:", formState.title)
+  }
 
   const handlePriceChange = (e) => {
     const { name, value } = e.target
@@ -34,7 +35,7 @@ const Entry = ({ entry, setEntries }) => {
     })
   }
 
-  const handleTitleChange = (e) => {
+  const handleFormChange = (e) => {
     const { name, value } = e.target
     const updatedFormState = { ...formState, [name]: value }
     setFormState(updatedFormState)
@@ -42,78 +43,80 @@ const Entry = ({ entry, setEntries }) => {
       type: "UPDATE_ITEM",
       payload: { id: entry.id, ...updatedFormState },
     })
-  }
-
-  const handleQuantityChange = (e) => {
-    const { name, value } = e.target
-    const updatedFormState = { ...formState, [name]: value }
-    setFormState(updatedFormState)
-    setEntries({
-      type: "UPDATE_ITEM",
-      payload: { id: entry.id, ...updatedFormState },
-    })
-  }
-
-  const handleDescriptionChange = (e) => {
-    const { name, value } = e.target
-    const updatedFormState = { ...formState, [name]: value }
-    setFormState(updatedFormState)
-    setEntries({
-      type: "UPDATE_ITEM",
-      payload: { id: entry.id, ...updatedFormState },
-    })
-    console.log("Updated form state:", updatedFormState)
   }
 
   return (
-    <div className="grid space-x-4 rounded-sm border-2 border-gray-50 round p-2 my-2">
-      <div className="grid grid-cols-13">
-        <p className="col-span-6 text-left ml-1.5">Name</p>
-        <p className="col-span-3 ml-2.5">Quantity</p>
-        <p className="col-span-3 ml-3.5">Value</p>
+    <div className="grid space-x-4 rounded-sm border-2 border-gray-50 round p-2 my-2 grid-cols-13">
+      <div className="col-span-13 flex justify-between mr-0">
+        <p>Search</p>
+        <div className="col-span-6 flex justify-between">
+          <h2>{formState.title}</h2>
+          <img
+            className="w-8 cursor-pointer col-span-1"
+            onClick={() =>
+              setEntries({ type: "REMOVE_ITEM", payload: entry.id })
+            }
+            src="/src/assets/exit.svg"
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-13">
+      <div className="relative col-span-8">
         <Input
           type="text"
-          name="title"
+          name="query"
           placeholder="Monopoly..."
           className="col-span-6"
-          value={formState.title}
-          onChange={handleTitleChange}
+          value={formState.query}
+          onChange={handleFormChange}
+          autoComplete="off"
+          onFocus={() => setSuggestionsVisible(true)}
+          onBlur={() => setTimeout(() => setSuggestionsVisible(false), 200)}
         />
+        {suggestionsVisible && (
+          <ItemSuggestions
+            entry={entry}
+            setEntries={setEntries}
+            itemQuery={formState.query}
+            formState={formState}
+            setFormState={setFormState}
+            handleTitleChange={handleTitleChange}
+          />
+        )}
+        <p className="col-span-8">Quantity: </p>
         <Input
           type="number"
           name="quantity"
-          className="col-span-3"
+          className=""
           value={formState.quantity}
-          onChange={handleQuantityChange}
+          onChange={handleFormChange}
         />
+        <p className="col-span-8">Price: </p>
         <Input
           type="text" // Use text type to allow formatting
           name="price"
-          className="col-span-3"
+          className="col-span-8"
           value={`$${formState.price}`}
           onChange={handlePriceChange}
         />
-        <img
-          className="w-8 m-auto cursor-pointer col-span-1"
-          onClick={() => setEntries({ type: "REMOVE_ITEM", payload: entry.id })}
-          src="/src/assets/exit.svg"
+        <Textarea
+          name="description"
+          placeholder="description"
+          onChange={handleFormChange}
         />
       </div>
-      <Textarea
-        name="description"
-        placeholder="description"
-        onChange={handleDescriptionChange}
-      />
+      <div className="col-span-5 flex flex-col items-center justify-center m-auto">
+        <img src={formState.image} alt="" />
+      </div>
     </div>
   )
 }
 
 const ItemForm = () => {
   const [entries, setEntries] = useContext(EntryContext)
-  const [bookboardOption, setBookboardOption] = useState("boardgame-option")
+  const [bookboardOption, setBookboardOption] = useState("book-option")
   const navigate = useNavigate()
+
+  //change default back to boardgame-option
 
   const submitListing = async (e) => {
     e.preventDefault()
@@ -124,11 +127,11 @@ const ItemForm = () => {
   }
 
   return (
-    <div className="w-2/5 flex flex-col justify-items-center align-middle m-auto">
+    <div className="w-140 flex flex-col items-center align-middle m-auto">
       <h1>Create Listing</h1>
       <form onSubmit={submitListing}>
         <div className="flex gap-4">
-          {["boardgame-option", "book-option"].map((option) => (
+          {["book-option"].map((option) => (
             <label
               key={option}
               htmlFor={option}
@@ -165,10 +168,12 @@ const ItemForm = () => {
                 type: "ADD_ITEM",
                 payload: {
                   id: Date.now(),
+                  query: "",
                   title: "",
-                  quantity: 1,
-                  value: 0,
+                  quantity: "1",
+                  price: 5.0,
                   description: "",
+                  image: "",
                 },
               })
             }}

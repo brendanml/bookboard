@@ -10,6 +10,7 @@ export const getItemSuggestions = async ({ type, query }) => {
 }
 
 const getBookSuggestions = async (query) => {
+  console.log("Querying Google Books API for:", query)
   const { data } = await axios.get(`/api/books/google?q=${query}`)
   return data
 }

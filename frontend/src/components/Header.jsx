@@ -8,7 +8,6 @@ import { CloudCog } from "lucide-react"
 
 const Header = () => {
   const [user, setUser] = useContext(UserContext)
-  console.log(user)
   return (
     <div className="flex justify-between p-4">
       <h1 className="text-black-700 text-lg">BOOKBOARD MARKETPLACE</h1>

@@ -9,6 +9,7 @@ const entryReducer = (state, action) => {
         quantity: action.payload.quantity,
         price: action.payload.price,
         description: action.payload.description,
+        image: action.payload.image,
       }
       return [...state, newEntry]
     }
@@ -21,6 +22,7 @@ const entryReducer = (state, action) => {
         quantity: action.payload.quantity,
         price: action.payload.price,
         description: action.payload.description,
+        image: action.payload.image,
       }
       return state.map((entry) =>
         entry.id === action.payload.id ? updatedEntry : entry,
@@ -35,7 +37,7 @@ const EntryContext = createContext()
 
 export const EntryContextProvider = (props) => {
   const [entries, setEntries] = useReducer(entryReducer, [
-    { id: 1, title: "", quantity: "1", price: "0", description: "" },
+    { id: 1, title: "", quantity: "1", price: "0", description: "", image: "" },
   ])
   return (
     <EntryContext.Provider value={[entries, setEntries]}>

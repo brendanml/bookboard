@@ -25,7 +25,6 @@ const Profile = () => {
       console.error(e, "problem logging out")
     }
   }
-  console.log(user, "from user")
   return (
     <DropdownMenu>
       <DropdownMenuTrigger

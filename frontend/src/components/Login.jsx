@@ -23,21 +23,13 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("in handle login");
-    console.log(loginInfo);
     try {
       const loggedInUser = await loginUser(loginInfo);
-      console.log("we have logged in user:");
-      console.log("************************");
-      console.log(loggedInUser);
       setTimedNotification("User logged in successfully", "success", 3000);
       setUser({ type: "LOGIN", payload: loggedInUser });
-      console.log("the logged in user:", loggedInUser);
       navigate("/");
     } catch (error) {
       setTimedNotification("Problem logging in", "bad", 3000);
-      console.log("error logging in");
-      console.log(error);
     }
   };
 

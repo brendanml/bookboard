@@ -7,6 +7,7 @@ const ItemSuggestions = ({
   setFormState,
   setEntries,
   entry,
+  handleTitleChange,
 }) => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["suggestions", itemQuery],
@@ -34,7 +35,6 @@ const ItemSuggestions = ({
         title: item.title,
         image: item.thumbnail,
       }
-      // console.log("Updated formState:", updatedFormState) // Debugging
       return updatedFormState
     })
 
@@ -52,7 +52,7 @@ const ItemSuggestions = ({
       {data
         ? data.map((item, index) => (
             <div
-              className="flex items-start border-2 border-gray-50 rounded p-2 my-1 h-auto cursor-pointer"
+              className="flex items-start border-2 border-gray-50 rounded p-2 my-1 h-auto cursor-pointer hover:bg-gray-100"
               key={item.id}
               onClick={() => updateFormState(item)}
               onDoubleClick={() => updateFormState(item)}
