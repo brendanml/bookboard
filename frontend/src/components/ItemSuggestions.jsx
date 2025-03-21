@@ -49,8 +49,7 @@ const ItemSuggestions = ({
         "flex flex-col max-h-72 overflow-y-auto absolute z-50 shadow-md bg-white w-full"
       }
     >
-      {data
-        ? data.map((item, index) => (
+      {data.map((item, index) => (
             <div
               className="flex items-start border-2 border-gray-50 rounded p-2 my-1 h-auto cursor-pointer"
               key={item.id}

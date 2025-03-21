@@ -26,16 +26,18 @@ const UserBooks = () => {
     <div>
       <h1>My Books</h1>
       <div className={"flex flex-row flex-wrap"}>
-        {data.map((book) => (
-          <Card key={book._id} className={"w-96"}>
-            <CardHeader>
-              <CardTitle>{book.item.title}</CardTitle>
-              <CardDescription>{book.description}</CardDescription>
-            </CardHeader>
-            <CardContent>Price: ${book.price}</CardContent>
-            <CardContent>Quantity: ${book.quantity}</CardContent>
-          </Card>
-        ))}
+        {data && data.map
+          ? data.map((book) => (
+              <Card key={book._id} className={"w-96"}>
+                <CardHeader>
+                  <CardTitle>{book.item.title}</CardTitle>
+                  <CardDescription>{book.description}</CardDescription>
+                </CardHeader>
+                <CardContent>Price: ${book.price}</CardContent>
+                <CardContent>Quantity: ${book.quantity}</CardContent>
+              </Card>
+            ))
+          : null}
       </div>
     </div>
   )
