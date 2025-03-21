@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const { User } = require("../models/User")
+const { Listing } = require("../models/Listing")
 const bcrypt = require("bcrypt")
 const validateUser = require("../middleware/validateUser")
 const logger = require("../utils/logger")
@@ -25,7 +26,7 @@ router.post("/login", async (req, res, next) => {
     return res.status(200).json({ message: "User logged in", user: userState })
   } catch (error) {
     console.error("Error logging in user:", error)
-    return res.status(500).json({ error: "Failed to login user" })
+    return res.status(200).json({ error: "user not logged in" })
   }
 })
 

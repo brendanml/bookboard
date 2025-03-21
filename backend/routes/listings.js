@@ -6,13 +6,15 @@ const logger = require("../utils/logger")
 const validateUser = require("../middleware/validateUser")
 const router = express.Router()
 
-router.post("/api/listings/create", validateUser, async (req, res, next) => {
+router.post("/create", validateUser, async (req, res, next) => {
+  const { type, entries } = req.body
   if (!Array.isArray(entries)) {
     return res
       .status(400)
       .json({ error: "Invalid request format. Expected an array." })
   }
 
+  console.log("Entries:", entries)
   try {
     const createdListings = []
 
@@ -22,7 +24,7 @@ router.post("/api/listings/create", validateUser, async (req, res, next) => {
         item = await Item.create({
           title: entry.title,
           image: entry.image,
-          type: req.body.type,
+          type: type,
         })
       }
       const newListing = await Listing.create({
