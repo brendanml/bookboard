@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
-const navStyle = "flex justify-center space-x-4";
-import Profile from "./Profile";
-import { UserContext } from "./UserContext";
-import { useContext } from "react";
+const navStyle = "flex justify-center space-x-4"
+import Profile from "./Profile"
+import { UserContext } from "./UserContext"
+import { useContext } from "react"
+import { CloudCog } from "lucide-react"
 
 const Header = () => {
-  const [user, setUser] = useContext(UserContext);
-  console.log(user);
+  const [user, setUser] = useContext(UserContext)
+  console.log(user)
   return (
     <div className="flex justify-between p-4">
       <h1 className="text-black-700 text-lg">BOOKBOARD MARKETPLACE</h1>
@@ -25,7 +26,7 @@ const Header = () => {
 
         {user ? (
           <>
-            <li>
+            <li data-testid="add-item-nav">
               <Link to="/listings/create" draggable="false">
                 Add Item
               </Link>
@@ -48,7 +49,7 @@ const Header = () => {
         )}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

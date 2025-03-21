@@ -28,7 +28,10 @@ const Profile = () => {
   console.log(user, "from user")
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer">
+      <DropdownMenuTrigger
+        className="cursor-pointer"
+        data-testid="profile-trigger"
+      >
         {user ? user.email : null}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
