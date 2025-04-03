@@ -46,7 +46,7 @@ function App() {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/books/:id" element={<ItemPage />} />
           <Route path="/listings/:id" element={<ListingPage />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </div>
       {!hidePaths.includes(location.pathname) && <Footer />}

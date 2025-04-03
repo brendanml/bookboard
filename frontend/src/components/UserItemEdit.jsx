@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react"
 import { Button } from "/src/components/ui/button"
 import { Input } from "/src/components/ui/input"
 import { Textarea } from "/src/components/ui/textarea"
+import exit from "/src/assets/exit.svg"
 import {
   Select,
   SelectContent,
@@ -125,7 +126,7 @@ const UserItemEdit = ({
       >
         <img
           className="absolute top-10 right-5 w-5 cursor-pointer"
-          src="/src/assets/exit.svg"
+          src={exit}
           alt=""
           onClick={() => setEditing(false)}
         />

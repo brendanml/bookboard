@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
     "dev:test": "NODE_ENV=test nodemon index.js",
-    "start": "NODE_ENV=production node index.js"
+    "start": "NODE_ENV=production node index.js",
+    "build:ui": "rm -rf dist && cd ../frontend/ && npm run build && cp -r dist ../backend"
   },
   "repository": {
     "type": "git",
@@ -16,13 +17,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@faker-js/faker": "^9.6.0",
     "axios": "^1.8.3",
     "bcrypt": "^5.1.1",
     "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
+    "express": "^5.1.0",
     "express-session": "^1.18.1",
-    "mongoose": "^8.12.1"
+    "mongoose": "^8.12.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10"
   }
 }

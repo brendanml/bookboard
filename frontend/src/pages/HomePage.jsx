@@ -61,7 +61,7 @@ const HomePage = () => {
       </div>
       <hr className="border-1/2 border-gray-300" />
       <div
-        className={`${expanded.books ? "h-full" : "h-45"} overflow-hidden mb-4`}
+        className={`${expanded.books ? "h-full" : "h-90"} overflow-hidden mb-4`}
       >
         <UserBooks />
       </div>

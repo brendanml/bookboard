@@ -2,6 +2,7 @@ import { getUserMatches } from "../services/user"
 import { Button } from "/src/components/ui/Button"
 import { useQuery } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
+import defaultAvatar from "/src/assets/default-avatar.png"
 
 const Match = ({ match }) => {
   // const
@@ -84,7 +85,7 @@ const Match = ({ match }) => {
       </div>
       <div className="flex flex-col items-center mt-2">
         <img
-          src="/src/assets/default-avatar.png"
+          src={defaultAvatar}
           alt=""
           className="w-32 rounded-full"
         />

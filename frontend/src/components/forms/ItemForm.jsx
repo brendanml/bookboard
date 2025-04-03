@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea"
 import BooksDropdown from "../BooksDropdown"
 import { useTimedNotification } from "../../contexts/NotificationContext"
 import { Label } from "/src/components/ui/label"
+import exit from "/src/assets/exit.svg"
+import fileUpload from "/src/assets/file_upload.svg"
 
 const Entry = ({ entry, setEntries }) => {
   const [formState, setFormState] = useState({
@@ -148,14 +150,14 @@ const Entry = ({ entry, setEntries }) => {
         <img
           className="w-3 cursor-pointer"
           onClick={() => setEntries({ type: "REMOVE_ITEM", payload: entry.id })}
-          src="/src/assets/exit.svg"
+          src={exit}
         />
       </div>
       {formState.title !== "" && (
         <div className="col-span-4 flex flex-col h-full w-auto p-3 pr-1.5">
           {formState.image === "" ? (
             <div className="border-2 border-dotted border-blue-100 h-full w-full flex items-center justify-center rounded-lg">
-              <img className="w-8" src="/src/assets/file_upload.svg" alt="" />
+              <img className="w-8" src={fileUpload} alt="" />
             </div>
           ) : (
             <img src={formState.image} alt="" className="h-full w-fit" />

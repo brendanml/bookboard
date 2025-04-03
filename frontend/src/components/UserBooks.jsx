@@ -1,6 +1,6 @@
 import { Button } from "/src/components/ui/button"
 import UserItemEdit from "./UserItemEdit"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {
   useDeleteMutation,
   useUpdateMutation,
@@ -8,9 +8,9 @@ import {
   useUserBooksQuery,
 } from "@/hooks/userBooksHooks"
 import { useNavigate } from "react-router-dom"
+import exit from "/src/assets/exit.svg"
 
-const UserBooks = () => {
-  const [soldFilter] = useState(true)
+const UserBooks = ({ filters = null }) => {
   const [editing, setEditing] = useState(false)
   const [editListing, setEditListing] = useState(null)
   const { data, isLoading, isError } = useUserBooksQuery()
@@ -18,6 +18,48 @@ const UserBooks = () => {
   const updateMutation = useUpdateMutation()
   const soldMutation = useSoldMutation()
   const navigate = useNavigate()
+
+  const [filteredItems, setFilteredItems] = useState([])
+
+  useEffect(() => {
+    if (!data) return
+
+    const filtered = data.filter((listing) => {
+      // Apply search filter
+      if (filters == null) return true
+      if (
+        filters?.search &&
+        !listing.item?.title
+          .toLowerCase()
+          .includes(filters.search.toLowerCase())
+      ) {
+        return false
+      }
+
+      // Apply status filters
+      if (listing.status === "sold" && !filters?.showSold) {
+        return false
+      }
+
+      if (listing.status === "available" && !filters?.showAvailable) {
+        return false
+      }
+
+      // Apply type filters
+      // if (listing.item?.type === "book" && !filters?.showBooks) {
+      //   return false
+      // }
+
+      // if (listing.item?.type === "boardgame" && !filters?.showBoardgames) {
+      //   return false
+      // }
+
+      return true
+    })
+
+    setFilteredItems(filtered)
+  }, [filters, data])
+
   if (isLoading) {
     return <div>Loading...</div>
   }
@@ -47,63 +89,47 @@ const UserBooks = () => {
         />
       )}
       <div className="flex flex-row flex-wrap">
-        {Array.isArray(data) ? (
-          data
-            .filter((listing) =>
-              soldFilter ? listing.status !== "sold" : true,
-            )
-            .map(
-              (listing) =>
-                listing.item && (
-                  <div
-                    className="shadow-sm m-2 p-2 rounded-md flex flex-row gap-1 border-1 border-gray-100 h-40 z-10"
-                    key={listing._id}
-                  >
-                    <img
-                      src={listing.item.image}
-                      alt={listing.item.title}
-                      className="h-full w-auto object-contain rounded-sm cursor-pointer border-1 border-gray-200"
-                      onClick={() => navigate(`/books/${listing.item._id}`)}
-                    />
-                    <div className="flex flex-col h-full justify-between relative">
-                      <div
-                        className="self-end w-3.5 h-3.5 rounded-full cursor-pointer hover:bg-gray-200 flex items-center justify-center"
-                        onClick={() => handleDelete(listing._id)}
-                      >
-                        <img
-                          src="/src/assets/exit.svg"
-                          alt=""
-                          className="w-2"
-                        />
-                      </div>
-                      <p className="bg-gray-100 rounded-md p-1 text-center">
-                        CAD <span className="font-bold">${listing.price}</span>
-                      </p>
-                      <p className="bg-gray-100 rounded-md p-1 text-center">
-                        x{listing.quantity}
-                      </p>
-                      {/* <Button
-                    variant="outline"
-                    className="cursor-pointer w-20"
-                    onClick={() => handleDelete(listing._id)}
-                  >
-                    Remove
-                  </Button> */}
-
-                      <Button
-                        variant=""
-                        onClick={() => {
-                          setEditListing(listing)
-                          setEditing(true)
-                        }}
-                        className="cursor-pointer w-20"
-                      >
-                        Edit
-                      </Button>
+        {Array.isArray(filteredItems) ? (
+          filteredItems.map(
+            (listing) =>
+              listing.item && (
+                <div
+                  className="shadow-sm m-2 p-2 rounded-md flex flex-row gap-1 border-1 border-gray-100 h-40 z-10"
+                  key={listing._id}
+                >
+                  <img
+                    src={listing.item.image}
+                    alt={listing.item.title}
+                    className="h-full w-auto object-contain rounded-sm cursor-pointer border-1 border-gray-200"
+                    onClick={() => navigate(`/books/${listing.item._id}`)}
+                  />
+                  <div className="flex flex-col h-full justify-between relative">
+                    <div
+                      className="self-end w-3.5 h-3.5 rounded-full cursor-pointer hover:bg-gray-200 flex items-center justify-center"
+                      onClick={() => handleDelete(listing._id)}
+                    >
+                      <img src={exit} alt="" className="w-2" />
                     </div>
+                    <p className="bg-gray-100 rounded-md p-1 text-center">
+                      CAD <span className="font-bold">${listing.price}</span>
+                    </p>
+                    <p className="bg-gray-100 rounded-md p-1 text-center">
+                      x{listing.quantity}
+                    </p>
+                    <Button
+                      variant=""
+                      onClick={() => {
+                        setEditListing(listing)
+                        setEditing(true)
+                      }}
+                      className="cursor-pointer w-20"
+                    >
+                      Edit
+                    </Button>
                   </div>
-                ),
-            )
+                </div>
+              ),
+          )
         ) : (
           <div>User not logged in.</div>
         )}

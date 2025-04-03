@@ -1,5 +1,6 @@
 import { useUserWants, useDeleteWant } from "@/hooks/userWantsHooks"
 import { useNavigate } from "react-router-dom"
+import exit from "/src/assets/exit.svg"
 
 const Wants = () => {
   const { data, isLoading, isError } = useUserWants()
@@ -39,11 +40,7 @@ const Wants = () => {
               }}
             >
               <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center border-1 border-black">
-                <img
-                  src="/src/assets/exit.svg"
-                  alt="Delete"
-                  className="w-2 h-2"
-                />
+                <img src={exit} alt="Delete" className="w-2 h-2" />
               </div>
             </div>
             <div

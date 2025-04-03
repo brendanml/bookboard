@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const sessionConfig = require("./middleware/session")
+const path = require("path")
 require("dotenv").config()
 
 const { dbconnect } = require("./dbconnect")
@@ -24,6 +25,8 @@ app.use(express.json())
 if (process.env.NODE_ENV === "test") {
   app.use("/api/testing", testingRouter)
 }
+app.use(express.static("dist"))
+
 app.use(sessionConfig)
 app.use(requestLogger)
 
@@ -33,6 +36,10 @@ app.use("/api/listings", listingRouter)
 
 app.use("/api/admin", adminRouter)
 app.use("/api/books", booksRouter)
+
+// app.get("*", (req, res) => {
+//   res.sendFile("/dist/index.html", { root: __dirname })
+// })
 
 app.use(unknownEndpoint)
 app.use(errorHandler)

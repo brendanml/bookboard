@@ -4,6 +4,7 @@ import NotificationBanner from "./NotificationBanner"
 const navStyle = "flex justify-center space-x-4"
 import Profile from "./Profile"
 import { useUser } from "../contexts/UserContext"
+import bookboardlogo from "../assets/bookboard.png"
 
 const Header = () => {
   const { user } = useUser()
@@ -13,7 +14,7 @@ const Header = () => {
   return (
     <div className="fixed w-full top-0 left-0 flex flex-col  z-50">
       <div className="flex flex-row justify-between items-center h-12 p-2 bg-white">
-        <img src="/src/assets/bookboard.png" alt="" className="h-9" />
+        <img src={bookboardlogo} alt="" className="h-9" />
         <div className={navStyle}>
           <Link
             to="/home"

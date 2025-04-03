@@ -4,6 +4,8 @@ import { getListing } from "../services/listing"
 import { Button } from "/src/components/ui/button"
 // import { useAddWant } from "../hooks/userWantsHooks
 import NavCard from "/src/components/NavCard"
+import fivestarImage from "/src/assets/5star.png"
+import defaultAvatar from "/src/assets/default-avatar.png"
 
 const ListingPage = () => {
   const { id } = useParams()
@@ -42,7 +44,7 @@ const ListingPage = () => {
         <div>
           <p>Price:</p>
           <p className="w-80 font-bold text-lg rounded-md bg-white shadow-md px-2 border-1 border-gray-200">
-            {data.price} $
+            ${data.price}
           </p>
         </div>
 
@@ -55,15 +57,11 @@ const ListingPage = () => {
           </div>
         </div>
         <div className="flex flex-row items-center gap-2">
-          <img
-            src="/src/assets/default-avatar.png"
-            alt=""
-            className="w-12 rounded-full"
-          />
+          <img src={defaultAvatar} alt="" className="w-12 rounded-full" />
           <p className="text-xl">
             {data.owner.firstname} {data.owner.lastname}
           </p>
-          <img src="/src/assets/5star.png" alt="" className="w-28" />
+          <img src={fivestarImage} alt="" className="w-28" />
         </div>
         <Button>Inquire</Button>
       </div>

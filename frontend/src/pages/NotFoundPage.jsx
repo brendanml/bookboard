@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useUser } from "../contexts/UserContext"
+import unknownEndpointImage from "../assets/unknown_endpoint.svg"
 
 const NotFound = () => {
   const navigate = useNavigate()
@@ -10,11 +11,7 @@ const NotFound = () => {
       <p className="text-2xl">
         <span className="italic">Sorry</span>, this page doesn't exist...
       </p>
-      <img
-        src="/src/assets/unknown_endpoint.svg"
-        alt=""
-        className="w-24 mt-4"
-      />
+      <img src={unknownEndpointImage} alt="" className="w-24 mt-4" />
       <p
         onClick={() => {
           user ? navigate("/home") : navigate("/")
