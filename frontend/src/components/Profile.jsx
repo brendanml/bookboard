@@ -7,12 +7,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { logoutUser } from "../services/user"
-import { useContext } from "react"
-import { UserContext } from "./UserContext"
 import { Link, useNavigate } from "react-router-dom"
+import { useUser } from "../contexts/UserContext"
 
 const Profile = () => {
-  const [user, setUser] = useContext(UserContext)
+  const { user, setUser } = useUser()
   const navigate = useNavigate()
 
   const handleLogout = async () => {
@@ -20,7 +19,7 @@ const Profile = () => {
       const logoutSuccess = await logoutUser()
       console.log("successful logout", logoutSuccess)
       setUser({ type: "LOGOUT" })
-      navigate("/account/login")
+      navigate("/")
     } catch (e) {
       console.error(e, "problem logging out")
     }
@@ -42,10 +41,18 @@ const Profile = () => {
           </DropdownMenuItem>
         </Link>
         <Link to="/user/items">
-          <DropdownMenuItem>My Items</DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer">
+            My Items
+          </DropdownMenuItem>
         </Link>
-        <DropdownMenuItem>My Wants</DropdownMenuItem>
-        <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+        <Link to="/wants/create">
+          <DropdownMenuItem className="cursor-pointer">
+            My Wants
+          </DropdownMenuItem>
+        </Link>
+        <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
+          Logout
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

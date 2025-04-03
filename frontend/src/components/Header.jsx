@@ -1,52 +1,78 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+import NotificationBanner from "./NotificationBanner"
 
 const navStyle = "flex justify-center space-x-4"
 import Profile from "./Profile"
-import { UserContext } from "./UserContext"
-import { useContext } from "react"
-import { CloudCog } from "lucide-react"
+import { useUser } from "../contexts/UserContext"
 
 const Header = () => {
-  const [user, setUser] = useContext(UserContext)
+  const { user } = useUser()
+  const location = useLocation()
+  console.log(location)
+
   return (
-    <div className="flex justify-between p-4">
-      <h1 className="text-black-700 text-lg">BOOKBOARD MARKETPLACE</h1>
-      <ul className={navStyle}>
-        <li>
-          <Link to="/" draggable="false">
+    <div className="fixed w-full top-0 left-0 flex flex-col  z-50">
+      <div className="flex flex-row justify-between items-center h-12 p-2 bg-white">
+        <img src="/src/assets/bookboard.png" alt="" className="h-9" />
+        <div className={navStyle}>
+          <Link
+            to="/home"
+            draggable="false"
+            className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+              location.pathname === "/home" ? "underline" : ""
+            }`}
+          >
             Home
           </Link>
-        </li>
-        <li>
-          <Link to="/listings" draggable="false">
-            Listings
+          <Link
+            to="/matches"
+            draggable="false"
+            className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+              location.pathname === "/matches" ? "underline" : ""
+            }`}
+          >
+            Matches
           </Link>
-        </li>
 
-        {user ? (
-          <>
-            <li data-testid="add-item-nav">
-              <Link to="/listings/create" draggable="false">
+          {user ? (
+            <>
+              <Link
+                to="/wants/create"
+                draggable="false"
+                className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+                  location.pathname === "/wants/create" ? "underline" : ""
+                }`}
+              >
+                Add Want
+              </Link>
+              <Link
+                to="/listings/create"
+                draggable="false"
+                className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+                  location.pathname === "/listings/create" ? "underline" : ""
+                }`}
+              >
                 Add Item
               </Link>
-            </li>
-            <Profile />
-          </>
-        ) : (
-          <>
-            <li>
-              <Link to="account/register" draggable="false">
-                Register
-              </Link>
-            </li>
-            <li>
-              <Link to="account/login" draggable="false">
+              <Profile />
+            </>
+          ) : (
+            <>
+              <Link
+                to="/"
+                draggable="false"
+                className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+                  location.pathname === "/" ? "underline" : ""
+                }`}
+              >
                 Login
               </Link>
-            </li>
-          </>
-        )}
-      </ul>
+            </>
+          )}
+        </div>
+      </div>
+      <hr className="border-1 border-gray-100 w-full" />
+      <NotificationBanner />
     </div>
   )
 }

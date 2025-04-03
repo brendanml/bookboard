@@ -1,5 +1,4 @@
-import { createContext, useReducer, useEffect } from "react"
-import Cookie from "js-cookie"
+import { createContext, useReducer, useEffect, useContext } from "react"
 import { getUser } from "../services/user"
 
 const userReducer = (state, action) => {
@@ -35,4 +34,9 @@ export const UserContextProvider = (props) => {
   )
 }
 
-export { UserContext }
+const useUser = () => {
+  const [user, setUser] = useContext(UserContext)
+  return { user, setUser }
+}
+
+export { UserContext, useUser }

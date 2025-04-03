@@ -1,11 +1,11 @@
 import UserBooks from "./UserBooks"
-import UserBoardgames from "./UserBoardgames"
+import Filter from "./Filter"
 
 const UserItems = () => {
   return (
-    <div>
+    <div className="px-4">
+      <Filter />
       <UserBooks />
-      <UserBoardgames />
     </div>
   )
 }

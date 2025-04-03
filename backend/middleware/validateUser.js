@@ -3,7 +3,6 @@ const { User } = require("../models/User")
 const validateUser = async (req, res, next) => {
   try {
     // Check if session and user exist
-    console.log(req.session)
     if (!req.session || !req.session.user) {
       return res.status(200).json({ message: "Unauthorized: No session found" })
     }
