@@ -24,6 +24,11 @@
 
 ## 📜 Devlog
 
+### 🗓️ April 3
+
+- ✅ added prototype pages to frontend for layout purposes.
+- ✅ added recommendations to home page
+
 ### 🗓️ April 2
 
 - ✅ Fixed matching on the backend and ensured it appears correctly on the frontend.
