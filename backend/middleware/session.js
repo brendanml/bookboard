@@ -15,7 +15,7 @@ const sessionConfig = session({
   cookie: {
     maxAge: 1000 * 60 * 60 * 24, // 1 day expiration
     httpOnly: true, // Prevents client-side JavaScript access
-    secure: process.env.NODE_ENV === "production", // Use secure cookies in production
+    secure: false, // Use secure cookies in production
   },
 })
 

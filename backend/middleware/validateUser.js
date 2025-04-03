@@ -1,3 +1,5 @@
+const { User } = require("../models/User")
+
 const validateUser = async (req, res, next) => {
   try {
     // Check if session and user exist
@@ -27,7 +29,5 @@ const validateUser = async (req, res, next) => {
     res.status(200).json({ message: "Internal server error" })
   }
 }
-
-
 
 module.exports = validateUser

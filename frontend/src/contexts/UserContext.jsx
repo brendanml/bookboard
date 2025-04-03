@@ -1,5 +1,4 @@
-import { createContext, useReducer, useEffect } from "react"
-import Cookie from "js-cookie"
+import { createContext, useReducer, useEffect, useContext } from "react"
 import { getUser } from "../services/user"
 
 const userReducer = (state, action) => {
@@ -21,10 +20,7 @@ export const UserContextProvider = (props) => {
   useEffect(() => {
     const fetchUser = async () => {
       const user = await getUser()
-      console.log("user from fetchUser", user)
       if (user.email) {
-        console.log("IN USER CONTEXT:")
-        console.log(user)
         setUser({ type: "LOGIN", payload: user })
       }
     }
@@ -38,4 +34,9 @@ export const UserContextProvider = (props) => {
   )
 }
 
-export { UserContext }
+const useUser = () => {
+  const [user, setUser] = useContext(UserContext)
+  return { user, setUser }
+}
+
+export { UserContext, useUser }

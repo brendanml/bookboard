@@ -1,8 +1,8 @@
 import { createRoot } from "react-dom/client"
 import { BrowserRouter as Router } from "react-router-dom"
 import App from "./App"
-import { NotificationProvider } from "./components/NotificationContext"
-import { UserContextProvider } from "./components/UserContext"
+import { NotificationProvider } from "./contexts/NotificationContext"
+import { UserContextProvider } from "./contexts/UserContext"
 import { StrictMode } from "react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
