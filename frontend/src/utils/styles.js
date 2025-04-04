@@ -1,1 +1,1 @@
-export const mainArea = "max-width: 1200px; margin: 0 auto; padding: 0 20px;"
+export const pageStyles = "mt-4 bg-white w-[97%] m-auto flex flex-col "

@@ -237,13 +237,19 @@ router.post("/listing", validateUser, async (req, res, next) => {
 
       // Ensure item exists in database
       let item = await Item.findById(entry.isbn)
-      if (!item) {
+      if (item) { //update item due to previous problems
+        item.description = entry.itemDescription
+        item.author = entry.author
+
+        await item.save()
+      } else if (!item) {
         item = await Item.create({
           _id: entry.isbn,
           title: entry.title,
           image: entry.image,
           type: type,
-          description: entry.description,
+          description: entry.itemDescription,
+          author: entry.author,
         })
       }
 
@@ -263,7 +269,6 @@ router.post("/listing", validateUser, async (req, res, next) => {
           {
             $inc: { quantity: entry.quantity }, // Increment quantity
             price: entry.price, // Update price
-            description: entry.description, // Update description
           },
           { new: true }
         )

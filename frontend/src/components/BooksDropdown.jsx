@@ -32,6 +32,7 @@ const BooksDropdown = ({
       title: item.title,
       image: item.thumbnail,
       isbn: item.isbn,
+      author: item.author,
       itemDescription: item.description,
     }
     setFormState((prevState) => {
@@ -40,6 +41,7 @@ const BooksDropdown = ({
         title: item.title,
         image: item.thumbnail,
         isbn: item.isbn,
+        author: item.author,
         itemDescription: item.description,
       }
       return updatedFormState

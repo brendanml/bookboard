@@ -30,12 +30,12 @@ const LandingPage = () => {
         />
 
         {/* Floating Image */}
-        <div className="absolute mt-50 z-10 flex flex-col items-center w-8/10">
+        {/* <div className="absolute mt-50 z-10 flex flex-col items-center w-8/10">
           <img src={laptopImage} alt="Laptop" />
           <p className="text-center text-2xl mt-4 w-9/10 font-secondary bg-white/80 rounded-md py-2">
             Save time and money exchanging books and board games.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   )

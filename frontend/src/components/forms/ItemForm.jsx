@@ -11,23 +11,26 @@ import { Label } from "/src/components/ui/label"
 import exit from "/src/assets/exit.svg"
 import fileUpload from "/src/assets/file_upload.svg"
 
+const blankEntry = {
+  query: "",
+  title: "",
+  quantity: 1,
+  price: 5, // Ensure value is a float
+  description: "",
+  itemDescription: "",
+  status: "available",
+  author: "",
+  isbn: "",
+  image: "",
+  errors: {
+    title: false,
+    quantity: false,
+    price: false,
+  },
+}
+
 const Entry = ({ entry, setEntries }) => {
-  const [formState, setFormState] = useState({
-    query: "",
-    title: "",
-    quantity: 1,
-    price: 5, // Ensure value is a float
-    description: "",
-    itemDescription: "",
-    status: "available",
-    isbn: "",
-    image: "",
-    errors: {
-      title: false,
-      quantity: false,
-      price: false,
-    },
-  })
+  const [formState, setFormState] = useState(blankEntry)
 
   const [suggestionsVisible, setSuggestionsVisible] = useState(false)
 
@@ -291,19 +294,7 @@ const ItemForm = () => {
                 type: "ADD_ITEM",
                 payload: {
                   id: Date.now(),
-                  query: "",
-                  title: "",
-                  quantity: 1,
-                  price: 5.0,
-                  isbn: "",
-                  description: "",
-                  status: "available",
-                  image: "",
-                  errors: {
-                    title: false,
-                    quantity: false,
-                    price: false,
-                  },
+                  ...blankEntry,
                 },
               })
             }}

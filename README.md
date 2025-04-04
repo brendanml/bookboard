@@ -24,6 +24,12 @@
 
 ## 📜 Devlog
 
+### 🗓️ April 4
+
+- ✅ fixed adding book that already exists in inventory overriding description.
+- ✅ fixed other and description of book not appearing correctly in some instances.
+
+
 ### 🗓️ April 3
 
 - ✅ added prototype pages to frontend for layout purposes.

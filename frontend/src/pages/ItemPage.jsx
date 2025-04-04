@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getItem } from "../services/item"
 import { Button } from "../components/ui/button"
 import { useAddWant } from "../hooks/userWantsHooks"
+import { pageStyles } from "@/utils/styles"
 
 const ItemPage = () => {
   const { id } = useParams()
@@ -23,7 +24,7 @@ const ItemPage = () => {
     }
     try {
       addWantMutation.mutate(newWant)
-      
+
       // Optionally, show a success notification
     } catch (e) {
       console.error(e)
@@ -40,26 +41,28 @@ const ItemPage = () => {
   console.log(data)
 
   return data ? (
-    <div className="grid grid-cols-4 p-2 gap-2">
-      <div className="col-span-1 row-span-2">
-        <img
-          className="rounded-sm border-1 border-gray-200 shadow-md"
-          src={data.image}
-          alt={data.title}
-        />
-      </div>
-      <div className="col-span-3 h-full">
-        <h1 className="text-2xl font-bold">{data.title}</h1>
-        <p className="text-lg col-">
-          By: <span className="italic">{data.author || "unkown"}</span>
-        </p>
-        <p className="text-lg">ISBN: {data._id}</p>
-        <Button className="self-end" onClick={handleAddWant}>
-          Add to Wants
-        </Button>
-      </div>
-      <div className="col-span-4 p-2 rounded-md border-1 border-gray-200 shadow-md">
-        <p className="text-lg">{data.description}</p>
+    <div className={`${pageStyles}`}>
+      <div className="w-4/5 m-auto grid grid-cols-4 p-2 gap-2">
+        <div className="col-span-1 row-span-2">
+          <img
+            className="rounded-sm border-1 border-gray-200 shadow-md"
+            src={data.image}
+            alt={data.title}
+          />
+        </div>
+        <div className="col-span-3 h-full">
+          <h1 className="text-2xl font-bold">{data.title}</h1>
+          <p className="text-lg col-">
+            By: <span className="italic">{data.author || "unkown"}</span>
+          </p>
+          <p className="text-lg">ISBN: {data._id}</p>
+          <Button className="self-end" onClick={handleAddWant}>
+            Add to Wants
+          </Button>
+        </div>
+        <div className="col-span-4 p-2 rounded-md border-1 border-gray-200 shadow-md">
+          <p className="text-lg">{data.description}</p>
+        </div>
       </div>
     </div>
   ) : null

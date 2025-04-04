@@ -5,6 +5,7 @@ import { getNYTBestSellers } from "@/services/item"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import NavCard from "@/components/NavCard"
+import { pageStyles } from "@/utils/styles"
 
 const HomePage = () => {
   const [expanded, setExpanded] = useState({
@@ -23,7 +24,7 @@ const HomePage = () => {
     return <div>Error loading best sellers</div>
   }
   return (
-    <div className="pl-4 flex flex-col">
+    <div className={`${pageStyles}`}>
       <h1 className="text-6xl">Home</h1>
       <h2 className="pt-3.5 text-xl">Recommendations</h2>
       <hr className="border-1/2 border-gray-300" />
