@@ -32,7 +32,7 @@ const Match = ({ match }) => {
   const createRow = (item, quantity, price, want_id) => {
     return (
       <div
-        className="grid grid-cols-10 h-14 items-center border-gray-200 border-1 cursor-pointer hover:bg-gray-50"
+        className="grid grid-cols-10 h-14 items-center border-gray-200 cursor-pointer hover:bg-gray-50"
         onClick={() => handleListingClick(want_id)}
       >
         <img src={item.image} alt="" className="h-10 col-span-1 m-auto" />
@@ -64,31 +64,31 @@ const Match = ({ match }) => {
   }
 
   return (
-    <div className="grid grid-cols-4 p-2 gap-2 border-1 rounded-md border-gray-200 shadow-md m-2 ">
+    <div className="grid grid-cols-4 p-4 gap-2 border-1 rounded-md border-gray-300 m-auto mb-5 w-4/7">
       <div className="flex flex-col col-span-3">
         {match.your_haves && match.your_haves.length > 0 && (
-          <div className="">
-            <h1>they want</h1>
-            {match.your_haves.map((want) =>
-              createRow(want.item, want.quantity, want.price, want._id),
-            )}
+          <div className="mb-3">
+            <h1 className="text-lg font-medium">They Want</h1>
+            <div className="rounded-md border-gray-200 border-1">
+              {match.your_haves.map((want) =>
+                createRow(want.item, want.quantity, want.price, want._id),
+              )}
+            </div>
           </div>
         )}
         {match.your_wants && match.your_wants.length > 0 && (
           <div>
-            <h1>you want</h1>
-            {match.your_wants.map((want) =>
-              createRow(want.item, want.quantity, want.price, want._id),
-            )}
+            <h1 className="text-lg font-medium">You Want</h1>
+            <div className="rounded-md border-gray-200 border-1">
+              {match.your_wants.map((want) =>
+                createRow(want.item, want.quantity, want.price, want._id),
+              )}
+            </div>
           </div>
         )}
       </div>
       <div className="flex flex-col items-center mt-2">
-        <img
-          src={defaultAvatar}
-          alt=""
-          className="w-32 rounded-full"
-        />
+        <img src={defaultAvatar} alt="" className="w-32 rounded-full" />
         <p>
           {match.other_user.firstname} {match.other_user.lastname}
         </p>

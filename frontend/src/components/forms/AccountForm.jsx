@@ -112,14 +112,17 @@ const AccountForm = () => {
             {formState.distancePreference || user.distancePreference}km
           </p>
         </div>
-        <Slider
-          min={5}
-          max={50}
-          defaultValue={[user.distancePreference]}
-          onChange={handleSlider}
-          className="mb-2 cursor-pointer"
-          name="distancePreference"
-        />
+        {user?.distancePreference && (
+          <Slider
+            min={5}
+            max={50}
+            defaultValue={[user.distancePreference]}
+            onChange={handleSlider}
+            className="mb-2 cursor-pointer"
+            name="distancePreference"
+          />
+        )}
+
         <Button type="submit" className="cursor-pointer">
           Update
         </Button>

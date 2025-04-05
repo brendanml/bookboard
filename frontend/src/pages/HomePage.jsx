@@ -27,8 +27,8 @@ const HomePage = () => {
     <div className={`${pageStyles}`}>
       <h1 className="text-6xl">Home</h1>
       <h2 className="pt-3.5 text-xl">Recommendations</h2>
-      <hr className="border-1/2 border-gray-300" />
-      <div className="h-50 flex flex-row flex-wrap overflow-hidden">
+      <hr className="border-1/2 border-gray-300 mb-2" />
+      <div className="h-45 flex flex-row flex-wrap overflow-hidden">
         {data && data.length > 0 ? (
           data.map((book) => (
             <NavCard item={book} itemType="books" key={book._id} />
@@ -46,8 +46,8 @@ const HomePage = () => {
           {expanded.wants ? "shrink" : "expand"}
         </p>
       </div>
-      <hr className="border-1/2 border-gray-300" />
-      <div className={`${expanded.wants ? "h-full" : "h-43"}  overflow-hidden`}>
+      <hr className="border-1/2 border-gray-300 mb-2" />
+      <div className={`${expanded.wants ? "h-full" : "h-41"}  overflow-hidden`}>
         <Wants />
       </div>
 
@@ -60,9 +60,9 @@ const HomePage = () => {
           {expanded.books ? "shrink" : "expand"}
         </p>
       </div>
-      <hr className="border-1/2 border-gray-300" />
+      <hr className="border-1/2 border-gray-300 mb-2" />
       <div
-        className={`${expanded.books ? "h-full" : "h-90"} overflow-hidden mb-4`}
+        className={`${expanded.books ? "h-full" : "h-83 "} overflow-hidden mb-4`}
       >
         <UserBooks />
       </div>

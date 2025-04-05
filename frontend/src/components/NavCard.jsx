@@ -7,7 +7,7 @@ const NavCard = ({ item, itemType, size }) => {
   }
   return (
     <div
-      className="cursor-pointer"
+      className="cursor-pointer mr-2"
       key={item._id}
       onClick={() => handleClick(item)}
     >

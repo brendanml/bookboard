@@ -26,7 +26,10 @@ const Wants = () => {
     Array.isArray(data) && (
       <div className="flex flex-row flex-wrap">
         {data.map((want) => (
-          <div className="relative group m-1" key={want._id || Date.now()}>
+          <div
+            className="relative group mr-2 mb-2 shadow-sm"
+            key={want._id || Date.now()}
+          >
             {/* Overlay that responds to the parent's group hover */}
             <div className="absolute inset-0 bg-gray-200 opacity-0 group-hover:opacity-30 transition-all duration-300 ease-in-out pointer-events-none z-9">
               {/* Empty div, just for the overlay effect */}

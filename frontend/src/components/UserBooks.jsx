@@ -94,7 +94,7 @@ const UserBooks = ({ filters = null }) => {
             (listing) =>
               listing.item && (
                 <div
-                  className="shadow-sm m-2 p-2 rounded-md flex flex-row gap-1 border-1 border-gray-100 h-40 z-10"
+                  className="p-2 mr-2 mb-2 rounded-md flex flex-row gap-1 border-1 border-gray-200 h-40 z-10"
                   key={listing._id}
                 >
                   <img

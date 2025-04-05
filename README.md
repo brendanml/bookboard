@@ -28,7 +28,7 @@
 
 - ✅ fixed adding book that already exists in inventory overriding description.
 - ✅ fixed other and description of book not appearing correctly in some instances.
-
+- ✅ made styling and spacing more uniform.
 
 ### 🗓️ April 3
 
