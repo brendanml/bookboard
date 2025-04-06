@@ -25,7 +25,7 @@ const Profile = () => {
     }
   }
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger
         className="cursor-pointer"
         data-testid="profile-trigger"
@@ -42,7 +42,7 @@ const Profile = () => {
         </Link>
         <Link to="/user/items">
           <DropdownMenuItem className="cursor-pointer">
-            My Items
+            My Inventory
           </DropdownMenuItem>
         </Link>
         <Link to="/wants/create">

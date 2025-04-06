@@ -78,7 +78,7 @@ const UserBooks = ({ filters = null }) => {
   }
 
   return (
-    <div className="w-full">
+    <div className="flex flex-col">
       {editing && (
         <UserItemEdit
           listing={editListing}

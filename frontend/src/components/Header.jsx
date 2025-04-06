@@ -1,25 +1,25 @@
 import { Link, useLocation } from "react-router-dom"
 import NotificationBanner from "./NotificationBanner"
-
-const navStyle = "flex justify-center space-x-4"
 import Profile from "./Profile"
 import { useUser } from "../contexts/UserContext"
 import bookboardlogo from "../assets/bookboard.png"
 
+const navStyle = "flex justify-center space-x-4"
+const baseLinkClass = "hover:bg-gray-100 rounded-md p-2 py-1 select-none" // add select-none here
+
 const Header = () => {
   const { user } = useUser()
   const location = useLocation()
-  console.log(location)
 
   return (
-    <div className="fixed w-full top-0 left-0 flex flex-col  z-50">
-      <div className="flex flex-row justify-between items-center h-12 p-2 bg-white">
-        <img src={bookboardlogo} alt="" className="h-9" />
-        <div className={navStyle}>
+    <div className="fixed w-full top-0 left-0 flex flex-col z-50 select-none">
+      <div className="flex flex-row items-center h-12 p-2 bg-white relative">
+        <img src={bookboardlogo} alt="" className="h-9" draggable="false" />
+        <div className={`${navStyle} fixed right-0 mr-4`}>
           <Link
             to="/home"
             draggable="false"
-            className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+            className={`${baseLinkClass} ${
               location.pathname === "/home" ? "underline" : ""
             }`}
           >
@@ -28,11 +28,11 @@ const Header = () => {
           <Link
             to="/matches"
             draggable="false"
-            className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+            className={`${baseLinkClass} ${
               location.pathname === "/matches" ? "underline" : ""
             }`}
           >
-            Matches
+            Exchanges
           </Link>
 
           {user ? (
@@ -40,7 +40,7 @@ const Header = () => {
               <Link
                 to="/wants/create"
                 draggable="false"
-                className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+                className={`${baseLinkClass} ${
                   location.pathname === "/wants/create" ? "underline" : ""
                 }`}
               >
@@ -49,26 +49,24 @@ const Header = () => {
               <Link
                 to="/listings/create"
                 draggable="false"
-                className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
+                className={`${baseLinkClass} ${
                   location.pathname === "/listings/create" ? "underline" : ""
                 }`}
               >
-                Add Item
+                Add Listing
               </Link>
               <Profile />
             </>
           ) : (
-            <>
-              <Link
-                to="/"
-                draggable="false"
-                className={`hover:bg-gray-100 rounded-md p-2 py-1 ${
-                  location.pathname === "/" ? "underline" : ""
-                }`}
-              >
-                Login
-              </Link>
-            </>
+            <Link
+              to="/"
+              draggable="false"
+              className={`${baseLinkClass} ${
+                location.pathname === "/" ? "underline" : ""
+              }`}
+            >
+              Login
+            </Link>
           )}
         </div>
       </div>

@@ -13,10 +13,11 @@
     --color-submit: #d191bc;
     --color-remove: #fe4e80;
     --secondary-c: #48A9A6;
+    overflow-y: scroll;
   }
 
 } 
 
-html {
+/* html {
   scrollbar-gutter: stable;
-}
+} */

@@ -50,7 +50,7 @@ const WantsForm = () => {
 
   return (
     <div className="w-9/10">
-      <div className="relative">
+      <div className="relative shadow-md mb-4">
         <Input
           type="text"
           name="title"

@@ -5,7 +5,7 @@ import { getNYTBestSellers } from "@/services/item"
 import { useState } from "react"
 import { useQuery } from "@tanstack/react-query"
 import NavCard from "@/components/NavCard"
-import { pageStyles } from "@/utils/styles"
+import { pageStyles, pageTitleStyles } from "@/utils/styles"
 
 const HomePage = () => {
   const [expanded, setExpanded] = useState({
@@ -25,8 +25,8 @@ const HomePage = () => {
   }
   return (
     <div className={`${pageStyles}`}>
-      <h1 className="text-6xl">Home</h1>
-      <h2 className="pt-3.5 text-xl">Recommendations</h2>
+      <h1 className={`${pageTitleStyles}`}>Home</h1>
+      <h2 className="text-xl">Recommendations</h2>
       <hr className="border-1/2 border-gray-300 mb-2" />
       <div className="h-45 flex flex-row flex-wrap overflow-hidden">
         {data && data.length > 0 ? (
@@ -38,7 +38,7 @@ const HomePage = () => {
         )}
       </div>
       <div className="flex flex-row justify-between items-end">
-        <h2 className="pt-0 text-xl">Wants</h2>
+        <h2 className="text-xl">Wants</h2>
         <p
           className="text-sm mr-4 hover:underline cursor-pointer"
           onClick={() => setExpanded({ ...expanded, wants: !expanded.wants })}

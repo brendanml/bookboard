@@ -9,7 +9,7 @@ import ItemForm from "/src/components/forms/ItemForm.jsx"
 import Header from "./components/Header.jsx"
 import AccountPage from "/src/pages/AccountPage.jsx"
 import MatchPage from "./pages/MatchPage.jsx"
-import UserItems from "./components/UserItems"
+import UserItemsPage from "./pages/UserItemsPage"
 import WantsPage from "/src/pages/WantsPage.jsx"
 import Footer from "./components/Footer"
 import LandingPage from "/src/pages/LandingPage"
@@ -41,12 +41,12 @@ function App() {
             }
           />
           <Route path="/wants/create" element={<WantsPage />} />
-          <Route path="/user/items" element={<UserItems />} />
+          <Route path="/user/items" element={<UserItemsPage />} />
           <Route path="/matches" element={<MatchPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/books/:id" element={<ItemPage />} />
           <Route path="/listings/:id" element={<ListingPage />} />
-          <Route path="/*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       {!hidePaths.includes(location.pathname) && <Footer />}

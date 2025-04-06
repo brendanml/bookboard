@@ -24,6 +24,11 @@
 
 ## 📜 Devlog
 
+### April 5
+
+- ✅ fixed scrollbar being hidden when opening account dropdown
+- ✅ Uniform page styling applied across all pages
+
 ### 🗓️ April 4
 
 - ✅ fixed adding book that already exists in inventory overriding description.

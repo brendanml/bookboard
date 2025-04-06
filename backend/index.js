@@ -25,10 +25,10 @@ app.use(express.json())
 if (process.env.NODE_ENV === "test") {
   app.use("/api/testing", testingRouter)
 }
-app.use(express.static("dist"))
 
 app.use(sessionConfig)
 app.use(requestLogger)
+app.use(express.static(path.join(__dirname, "dist")))
 
 app.use("/api/user", userRouter)
 
@@ -37,9 +37,9 @@ app.use("/api/listings", listingRouter)
 app.use("/api/admin", adminRouter)
 app.use("/api/books", booksRouter)
 
-// app.get("*", (req, res) => {
-//   res.sendFile("/dist/index.html", { root: __dirname })
-// })
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"))
+})
 
 app.use(unknownEndpoint)
 app.use(errorHandler)

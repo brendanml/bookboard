@@ -32,7 +32,7 @@ const ListingPage = () => {
           {/* <p className="text-lg">ISBN: {data.item._id}</p> */}
         </div>
         <div className="h-full">
-          <h1 className="text-2xl font-bold">{data.item.title}</h1>
+          <h1 className="text-2xl font-medium">{data.item.title}</h1>
           <p className="text-lg font-gray-700">
             By: <span className="italic">{data.item.author || "unknown"}</span>
           </p>

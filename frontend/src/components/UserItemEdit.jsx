@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { Button } from "/src/components/ui/button"
 import { Input } from "/src/components/ui/input"
 import { Textarea } from "/src/components/ui/textarea"
