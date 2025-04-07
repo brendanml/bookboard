@@ -28,6 +28,7 @@
 
 - ✅ fixed scrollbar being hidden when opening account dropdown
 - ✅ Uniform page styling applied across all pages
+- 🔄 started implementing starting exchanges with others
 
 ### 🗓️ April 4
 

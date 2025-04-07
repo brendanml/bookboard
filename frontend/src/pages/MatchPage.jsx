@@ -7,6 +7,7 @@ import Exchanges from "/src/components/Exchanges"
 import CreateOfferPage from "@/pages/CreateOfferPage"
 import { pageStyles, pageTitleStyles } from "@/utils/styles"
 import { useState } from "react"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const Match = ({ match }) => {
   // const
@@ -37,6 +38,7 @@ const Match = ({ match }) => {
   const createRow = (item, quantity, price, want_id) => {
     return (
       <div
+        key={want_id}
         className="grid grid-cols-10 h-14 items-center border-gray-200 cursor-pointer hover:bg-gray-50 rounded-md"
         onClick={() => handleListingClick(want_id)}
       >
@@ -82,7 +84,11 @@ const Match = ({ match }) => {
           </h3>
           <p>{match.other_user.location}</p>
         </div>
-        <Button type="button" onClick={handleCreateOffer}>
+        <Button
+          type="button"
+          className="cursor-pointer"
+          onClick={handleCreateOffer}
+        >
           Create Offer
         </Button>
         {offerPageVisible && (
@@ -117,14 +123,30 @@ const Match = ({ match }) => {
 }
 
 const Matches = () => {
-  // const queryClient = useQueryClient()
   const { data, isLoading, isError } = useQuery({
     queryKey: ["userMatches"],
     queryFn: getUserMatches,
   })
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return Array.from({ length: 3 }, (_, index) => (
+      <div className="flex flex-col space-x-4">
+        <div className="flex flex-row items-center justify-between mb-4 mt-3">
+          <Skeleton className="m-2 w-40 h-10 rounded-md" />
+          <Skeleton className="m-2 w-22 h-10 rounded-md" />
+        </div>
+        <div className="ml-2 space-y-4 w-[95%] mb-4">
+          <Skeleton className="h-10" />
+          <Skeleton className="h-10" />
+          <Skeleton className="h-10" />
+        </div>
+        <div className="ml-2 space-y-4 w-[95%]">
+          <Skeleton className="h-10" />
+          <Skeleton className="h-10" />
+          <Skeleton className="h-10" />
+        </div>
+      </div>
+    ))
   }
   if (isError) {
     return <div>Error loading matches</div>
@@ -139,20 +161,22 @@ const Matches = () => {
 
 const MatchPage = () => {
   return (
-    <div className="grid grid-cols-10 mt-4 bg-white w-[97%] m-auto mb-20 gap-4">
-      {/* <Button className="cursor-pointer mt-4" onClick={handleMatchButton}>
+    <div className={`${pageStyles}`}>
+      <div className="grid grid-cols-10 m-auto gap-4 w-full">
+        {/* <Button className="cursor-pointer mt-4" onClick={handleMatchButton}>
         Click me
       </Button> */}
-      <h1 className={`${pageTitleStyles} col-span-10`}>Exchanges</h1>
-      <div className="col-span-6 flex flex-col h-screen">
-        <h2 className="text-xl font-medium">Top Matches</h2>
-        {/* <hr className="border-1/2 border-gray-300 mb-2" /> */}
-        <Matches />
-      </div>
-      <div className="col-span-4 bg-white">
-        <h2 className="text-xl font-medium">Exchanges</h2>
-        <div className="border-1 border-gray-300 rounded-md z-10">
-          <Exchanges />
+        <h1 className={`${pageTitleStyles} col-span-10`}>Exchanges</h1>
+        <div className="col-span-6 flex flex-col">
+          <h2 className="text-xl font-medium">Recommended People</h2>
+          {/* <hr className="border-1/2 border-gray-300 mb-2" /> */}
+          <Matches />
+        </div>
+        <div className="col-span-4 bg-white">
+          <h2 className="text-xl font-medium">Exchanges</h2>
+          <div className="border-1 border-gray-300 rounded-md z-10">
+            <Exchanges />
+          </div>
         </div>
       </div>
     </div>
