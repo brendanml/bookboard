@@ -1,6 +1,6 @@
-# 📖 bookboard
+# 📖 Rebiblio
 
-- Bookboard is location based web application that allows individuals to exchange books and boardgames in their community.
+- Rebiblio is location based web application that allows individuals to exchange books and boardgames in their community.
 
 ## 🤝 Recruiters
 
@@ -11,93 +11,93 @@
 
 ## 🌐 External Links
 
-- **Live website**: [https://backend-dark-log-9688.fly.dev](https://backend-dark-log-9688.fly.dev)
+- **Live website**: [rebiblio.com](https://rebiblio.com/)
 - **Youtube Channel**: [https://www.youtube.com/@uhhbml](https://www.youtube.com/@uhhbml)
-- **Project Roadmap**: [https://trello.com/b/jUTGaNBq/bookboard](https://trello.com/b/jUTGaNBq/bookboard)
+- **Project Roadmap**: [trello board](https://trello.com/b/jUTGaNBq/bookboard)
 
-## 🤔 How does bookboard connect users?
+## 🤔 How does Rebiblio connect users?
 
-- Bookboard uses a matching algorithm to connect people based on 3 criteria:
+- Rebiblio uses a matching algorithm to connect people based on 3 criteria:
   1. Users who want the books/boardgames they have.
   2. Users who have the books/boardgames they want.
   3. Users who are within their own distance preference.
 
 ## 📜 Devlog
 
-### April 5
+### 🗓️ 2025-04-14
 
-- ✅ fixed scrollbar being hidden when opening account dropdown
+- ✅ Fixed scrollbar being hidden when opening account dropdown
 - ✅ Uniform page styling applied across all pages
-- 🔄 started implementing starting exchanges with others
+- 🔄 Started implementing starting exchanges with others
 
-### 🗓️ April 4
+### 🗓️ 2025-04-04
 
-- ✅ fixed adding book that already exists in inventory overriding description.
-- ✅ fixed other and description of book not appearing correctly in some instances.
-- ✅ made styling and spacing more uniform.
+- ✅ Fixed adding book that already exists in inventory overriding description
+- ✅ Fixed "other" and description of book not appearing correctly in some instances
+- ✅ Made styling and spacing more uniform
 
-### 🗓️ April 3
+### 🗓️ 2025-04-03
 
-- ✅ added prototype pages to frontend for layout purposes.
-- ✅ added recommendations to home page
+- ✅ Added prototype pages to frontend for layout purposes
+- ✅ Added recommendations to home page
 
-### 🗓️ April 2
+### 🗓️ 2025-04-02
 
-- ✅ Fixed matching on the backend and ensured it appears correctly on the frontend.
+- ✅ Fixed matching on the backend and ensured it appears correctly on the frontend
 
-### 🗓️ April 1
+### 🗓️ 2025-04-01
 
-- ✅ Fixed issue where statuses were not being added to items from the form.
+- ✅ Fixed issue where statuses were not being added to items from the form
 
-### 🗓️ March 31
+### 🗓️ 2025-03-31
 
-- 🎨 Updated UI.
-- 📝 Designed new pages.
+- 🎨 Updated UI
+- 📝 Designed new pages
 
-### 🗓️ March 28
+### 🗓️ 2025-03-28
 
-- 🛠️ Fixed a bug where the item form created duplicate book listings.
-- 🔄 Implemented frontend display for user matches and backend data handling.
+- 🛠️ Fixed a bug where the item form created duplicate book listings
+- 🔄 Implemented frontend display for user matches and backend data handling
 
-### 🗓️ March 27
+### 🗓️ 2025-03-27
 
-- 📌 Fixed issue with creating listings.
-- ➕ Now, attempting to create a listing for an existing book increases its quantity instead.
-- 🔒 Improved user validation during account creation (backend).
-- 🔄 Merged login page into a single component.
-- 🚀 Added a route for handling undefined URLs.
+- 📌 Fixed issue with creating listings
+- ➕ Now, attempting to create a listing for an existing book increases its quantity instead
+- 🔒 Improved user validation during account creation (backend)
+- 🔄 Merged login page into a single component
+- 🚀 Added a route for handling undefined URLs
 
-### 🗓️ March 26
+### 🗓️ 2025-03-26
 
-- 🔍 Added filters for user items.
-- 🎨 Improved `userbooks` styling.
-- 🛠️ Fixed `itemForm` suggestions.
+- 🔍 Added filters for user items
+- 🎨 Improved `userbooks` styling
+- 🛠️ Fixed `itemForm` suggestions
 
-### 🗓️ March 25
+### 🗓️ 2025-03-25
 
-- 🧩 Developed the matching algorithm service.
+- 🧩 Developed the matching algorithm service
 
-### 🗓️ March 24
+### 🗓️ 2025-03-24
 
-- 📖 Created the "Wants" page.
-- 🏗️ Started working on the matching algorithm microservice.
-- 🎨 Restyled the frontend.
+- 📖 Created the "Wants" page
+- 🏗️ Started working on the matching algorithm microservice
+- 🎨 Restyled the frontend
 
-### 🗓️ March 19
+### 🗓️ 2025-03-19
 
-- 🧠 Deepened my understanding of middleware and error handling.
+- 🧠 Deepened my understanding of middleware and error handling
 
-### 🗓️ March 18
+### 🗓️ 2025-03-18
 
-- 🧪 Wrote tests.
-- 🔄 Refreshed my Git basics.
+- 🧪 Wrote tests
+- 🔄 Refreshed my Git basics
 
-### 🗓️ March 14
+### 🗓️ 2025-03-14
 
-- 🎨 Set up Tailwind CSS.
-- 🔔 Added notification context.
-- 🏗️ Integrated `shadcn` with working UI components.
+- 🎨 Set up Tailwind CSS
+- 🔔 Added notification context
+- 🏗️ Integrated `shadcn` with working UI components
 
-### 🗓️ March 13
+### 🗓️ 2025-03-13
 
-- 🔗 Connected form frontend and backend.
+- 🔗 Connected form frontend and backend

@@ -22,7 +22,7 @@ const UserBooks = ({ filters = null }) => {
   const [filteredItems, setFilteredItems] = useState([])
 
   useEffect(() => {
-    if (!data) return
+    if (!data || !Array.isArray(data)) return
 
     const filtered = data.filter((listing) => {
       // Apply search filter
